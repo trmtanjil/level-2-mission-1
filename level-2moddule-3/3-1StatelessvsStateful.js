@@ -13,6 +13,8 @@ const counter = {
     },
     print(){
         console.log(this.count)
+                console.log('sldk',this.count)
+
     },
 }
 counter.add(2);
