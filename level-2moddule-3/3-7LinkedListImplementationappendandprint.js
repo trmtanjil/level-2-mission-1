@@ -47,7 +47,7 @@ class Node {
     insert(index, value){
         if(index <0 || index > this.length){
             console.error('index out of bound')
-            return undefined
+            return undefined;
         }
         // if the insert is in the start of the linked list 
         if(index === 0 ){
@@ -61,18 +61,31 @@ class Node {
 
         // find the leading node 
 
-        let count = 0;
-        let leadingNode = this.head;
+        const leadingNode = this._traverseToIndex(index -1)
+       const holdingNode = leadingNode.next;
 
-        while(count !== index - 1){
-            leadingNode = leadingNode.next;
-            count++;
-        }
-        console.log(leadingNode)
+       const newNode = new Node(value);
+
+       leadingNode.next = newNode;
+       newNode.next=holdingNode;
+
+       this.length++;
+        
     }
 
     remove(){}
+ 
+    //privet helper method
+    _traverseToIndex(index){
+        let count = 0;
+        let currentNode = this.head;
 
+        while(count !== index){
+            currentNode = currentNode.next;
+            count++;
+        }
+        return currentNode;
+    }
     print(){
 
         const arr = [];
@@ -92,10 +105,7 @@ class Node {
   likedList.append(2)
    likedList.append(3)
 
-   likedList.prepend(10)
-      likedList.prepend(20)
-       likedList.prepend(30)
-       
-    // likedList.insert(2,100)
+   
+    likedList.insert(2,100)
        likedList.print()
  
